@@ -1,0 +1,368 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Photoshop笔记整理</title>
+
+  <!-- css引用 -->
+
+  <!-- 字体图标引用 -->
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+  <!-- 主要样式引用 -->
+  <link type="text/css" href="css/main.min.css" rel="stylesheet">
+  <!-- 图片查看器的引用 -->
+  <link rel="stylesheet" type="text/css" href="css/viewer.min.css" />
+
+  <!-- js引用 -->
+
+  <!-- Jquery -->
+  <script src="js/jquery.min.js"></script>
+  <!-- Viewer.js Plugin -->
+  <script src="js/viewer.min.js"></script>
+  <script src="js/jquery-viewer.min.js"></script>
+  <!-- MD5加密 -->
+  <script src="js/md5.min.js"></script>
+  <!-- LazyLoad延迟加载（服务器太烂见谅） -->
+  <script type="text/javascript" src="js/jquery.lazy.min.js"></script>
+  <script type="text/javascript" src="js/jquery.lazy.plugins.min.js"></script>
+  <!-- 手机界面 -->
+  <style>
+    /* 小屏幕手机端 */
+    @media (min-width: 0px) and (max-width:768px) {
+      .div1{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+    }
+
+    /* 中等屏幕（桌面显示器，大于等于 2400px） */
+    @media (min-width: 768px) and (max-width:2400px){
+      .div1{
+        width: 300px;
+        height: 300px;
+        background-color: blue;
+      }
+    }
+
+    /* 大屏幕（大桌面显示器，大于等于 2400px） */
+    @media (min-width: 2400px) {
+      .div1{
+        width: 500px;
+        height: 500px;
+        background-color: aqua;
+      }
+    }
+  </style>
+
+
+
+
+
+</head>
+
+<body>
+<div id="pjax-container">
+  <main>
+
+    <div class="card shadow border-0 bg-secondary toc-container">
+      <a class="carousel-control-prev" id="toc-nomiao">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+      </a>
+      <div class="card-img container container-lg py-5 toc">
+        <strong>文章目录</strong>
+        <div class="toc-list">
+          <ul>
+            <li><a name="dl-1" href="javascript:jumpto(1)">2021-11-21</a></li>
+            <li><a name="dl-2" href="javascript:jumpto(2)">2021-11-22</a></li>
+            <li><a name="dl-3" href="javascript:jumpto(3)">2021-11-23</a></li>
+            <li><a name="dl-4" href="javascript:jumpto(4)">2021-11-24</a></li>
+            <li><a name="dl-5" href="javascript:jumpto(5)">2021-11-25</a></li>
+            <li><a name="dl-6" href="javascript:jumpto(6)">2021-11-26</a></li>
+            <li><a name="dl-7" href="javascript:jumpto(7)">2021-11-27</a></li>
+            <li><a name="dl-8" href="javascript:jumpto(8)">2021-11-28</a></li>
+            <li><a name="dl-9" href="javascript:jumpto(9)">2021-11-29</a></li>
+            <li><a name="dl-10" href="javascript:jumpto(10)">2021-11-30</a></li>
+            <li><a name="dl-11" href="javascript:jumpto(11)">2021-12-1</a></li>
+            <li><a name="dl-12" href="javascript:jumpto(12)">2021-12-2</a></li>
+            <li><a name="dl-13" href="javascript:jumpto(13)">2021-12-3</a></li>
+            <li><a name="dl-14" href="javascript:jumpto(14)">2021-12-4</a></li>
+            <li><a name="dl-15" href="javascript:jumpto(15)">2021-12-5</a></li>
+            <li><a name="dl-16" href="javascript:jumpto(16)">2021-12-6</a></li>
+            <li><a name="dl-17" href="javascript:jumpto(17)">2021-12-7</a></li>
+            <li><a name="dl-18" href="javascript:jumpto(18)">2021-12-8</a></li>
+            <li><a name="dl-19" href="javascript:jumpto(19)">2021-12-9</a></li>
+            <li><a name="dl-20" href="javascript:jumpto(20)">2021-12-10</a></li>
+            <li><a name="dl-21" href="javascript:jumpto(21)">2021-12-11</a></li>
+            <li><a name="dl-22" href="javascript:jumpto(22)">2021-12-12</a></li>
+            <li><a name="dl-23" href="javascript:jumpto(23)">2021-12-13</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script>
+      var onshow = false;
+
+      function tocshow() {
+        if (onshow) {
+          $(".toc-container").css("right", '-175px')
+          $(".toc-container i").removeClass("fa-chevron-right").addClass("fa-chevron-left")
+        } else {
+          $(".toc-container").css("right", '-5px')
+          $(".toc-container i").removeClass("fa-chevron-left").addClass("fa-chevron-right")
+        }
+        onshow = !onshow
+      }
+
+      function jumpto(num) {
+        $('html,body').animate({
+          scrollTop: $('[name="cl-' + num + '"]').offset().top - 120
+        }, 500)
+      }
+      $("#toc-nomiao").click(tocshow)
+      var nowtoc = "cl-1"
+      $(document).ready(function() {
+        $(document).scroll(function() {
+          for (var ele of $("*[name*='cl-']").get().reverse()) {
+            if ($(document).scrollTop() + 121 > $(ele).offset().top) {
+              if (nowtoc != ele.name) {
+                var tocele = $("*[name*='dl-" + nowtoc.replace("cl-", "") + "']")
+                tocele.removeClass("located")
+
+
+                tocele = $("*[name*='dl-" + ele.name.replace("cl-", "") + "']")
+                tocele.addClass("located")
+                $(".toc-list").animate({
+                  scrollTop: $(".toc-list").scrollTop() - 50 + tocele.position().top
+                }, 80)
+                nowtoc = ele.name
+              }
+              break
+            }
+          }
+          //
+        })
+      });
+    </script>
+    <section class="section section-lg section-hero section-shaped">
+      <div class="shape shape-style-1 shape-image" style="background-image: url(img/bg.jpg)"><span class="span-150"></span>
+        <span class="span-50"></span>
+        <span class="span-50"></span>
+        <span class="span-75"></span>
+        <span class="span-100"></span>
+        <span class="span-75"></span>
+        <span class="span-50"></span>
+        <span class="span-100"></span>
+        <span class="span-50"></span>
+        <span class="span-100"></span></div>		<div class="container shape-container d-flex align-items-center py-lg">
+      <div class="col px-0 text-center">
+        <div class="row align-items-center justify-content-center">
+          <h1 class="text-white">Photoshop笔记第一册整理</h1>
+        </div>
+      </div>
+    </div>
+    </section>
+    <section class="section section-components bg-secondary content-card-container">
+      <div class="container container-lg py-5 align-items-center content-card-container">
+        <div class="card shadow content-card content-card-head">
+          <!-- Article content -->
+          <section class="section">
+            <div class="container">
+              <div class="content">
+                <h5 align="center">使用说明：右侧的目录栏直接跳转到某个时间点<br>下方箭头可以跳转到上下册</h5>
+                <h3 align="center">
+                  <a href="#" onclick="alert('已经是第一页了哦')">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                  </a>
+                  &nbsp;第一册&nbsp;
+                  <a href="two.html">
+                  <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                  </a>
+                </h3>
+                <hr>
+                <h1><a name="cl-1"></a>2021-11-21</h1><p><noscript><img src="img/2021-11-21.jpg" alt="第一天" title="第一天"></noscript><img data-src="img/2021-11-21.jpg"  alt="第一天" title="第一天"><h1><a name="cl-2"></a>2021-11-22</h1><p><noscript><img src="img/2021-11-25.jpg" alt="第二天" title="第二天"></noscript><img data-src="img/2021-11-25.jpg"  alt="第二天" title="第二天"><h1><a name="cl-3"></a>2021-11-23</h1><p><noscript><img src="img/2021-11-23.jpg" alt="第三天" title="第三天"></noscript><img data-src="img/2021-11-23.jpg"  alt="第三天" title="第三天"><h1><a name="cl-4"></a>2021-11-24</h1><p><noscript><img src="img/2021-11-24.jpg" alt="第四天" title="第四天"></noscript><img data-src="img/2021-11-24.jpg"  alt="第四天" title="第四天"><h1><a name="cl-5"></a>2021-11-25</h1><p><noscript><img src="img/2021-11-25.jpg" alt="第五天" title="第五天"></noscript><img data-src="img/2021-11-25.jpg"  alt="第五天" title="第五天"><h1><a name="cl-6"></a>2021-11-26</h1><p><noscript><img src="img/2021-11-26.jpg" alt="第六天" title="第六天"></noscript><img data-src="img/2021-11-26.jpg"  alt="第六天" title="第六天"><h1><a name="cl-7"></a>2021-11-27</h1><p><noscript><img src="img/2021-11-27.jpg" alt="第七天" title="第七天"></noscript><img data-src="img/2021-11-27.jpg"  alt="第七天" title="第七天"><h1><a name="cl-8"></a>2021-11-28</h1><p><noscript><img src="img/2021-11-28.jpg" alt="第八天" title="第八天"></noscript><img data-src="img/2021-11-28.jpg"  alt="第八天" title="第八天"><h1><a name="cl-9"></a>2021-11-29</h1><p><noscript><img src="img/2021-11-29.jpg" alt="第九天" title="第九天"></noscript><img data-src="img/2021-11-29.jpg"  alt="第九天" title="第九天"><h1><a name="cl-10"></a>2021-11-30</h1><p><noscript><img src="img/2021-11-30.jpg" alt="第十天" title="第十天"></noscript><img data-src="img/2021-11-30.jpg"  alt="第十天" title="第十天">
+                <h1><a name="cl-11"></a>2021-12-1</h1><p><noscript><img src="img/2021-12-1.jpg" alt="第十一天" title="第十一天"></noscript><img data-src="img/2021-12-1.jpg"  alt="第十一天" title="第十一天">
+                <h1><a name="cl-12"></a>2021-12-2</h1>
+                <p><noscript><img src="img/2021-12-2.jpg" alt="第十二天" title="第十二天"></noscript><img data-src="img/2021-12-2.jpg"  alt="第十二天" title="第十二天">
+                <h1><a name="cl-13"></a>2021-12-3</h1>
+                <p><noscript><img src="img/2021-12-3.jpg" alt="第十三天" title="第十三天"></noscript><img data-src="img/2021-12-3.jpg"  alt="第十三天" title="第十三天">
+                <h1><a name="cl-14"></a>2021-12-4</h1>
+                <p><noscript><img src="img/2021-12-4.jpg" alt="第十四天" title="第十四天"></noscript><img data-src="img/2021-12-4.jpg"  alt="第十四天" title="第十四天">
+                <h1><a name="cl-15"></a>2021-12-5</h1>
+                <p><noscript><img src="img/2021-12-5.jpg" alt="第十五天" title="第十五天"></noscript><img data-src="img/2021-12-5.jpg"  alt="第十五天" title="第十五天">
+                <h1><a name="cl-16"></a>2021-12-6</h1>
+                <p><noscript><img src="img/2021-12-6.jpg" alt="第十六天" title="第十六天"></noscript><img data-src="img/2021-12-6.jpg"  alt="第十六天" title="第十六天">
+                <h1><a name="cl-17"></a>2021-12-7</h1>
+                <p><noscript><img src="img/2021-12-7.jpg" alt="第十七天" title="第十七天"></noscript><img data-src="img/2021-12-7.jpg"  alt="第十七天" title="第十七天">
+                <h1><a name="cl-18"></a>2021-12-8</h1>
+                <p><noscript><img src="img/2021-12-8.jpg" alt="第十八天" title="第十八天"></noscript><img data-src="img/2021-12-8.jpg"  alt="第十八天" title="第十八天">
+                <h1><a name="cl-19"></a>2021-12-9</h1>
+                <p><noscript><img src="img/2021-12-9.jpg" alt="第十九天" title="第十九天"></noscript><img data-src="img/2021-12-9.jpg"  alt="第十九天" title="第十九天">
+                <h1><a name="cl-20"></a>2021-12-10</h1>
+                <p><noscript><img src="img/2021-12-10.jpg" alt="第二十天" title="第二十天"></noscript><img data-src="img/2021-12-10.jpg"  alt="第二十天" title="第二十天">
+                <h1><a name="cl-21"></a>2021-12-12</h1>
+                <p><noscript><img src="img/2021-12-11.jpg" alt="第二十一天" title="第二十一天"></noscript><img data-src="img/2021-12-11.jpg"  alt="第二十一天" title="第二十一天">
+                <h1><a name="cl-22"></a>2021-12-12</h1>
+                <p><noscript><img src="img/2021-12-12.jpg" alt="第二十二天" title="第二十二天"></noscript><img data-src="img/2021-12-12.jpg"  alt="第二十二天" title="第二十二天">
+                <h1><a name="cl-23"></a>2021-12-13</h1>
+                <p><noscript><img src="img/2021-12-13.jpg" alt="第二十三天" title="第二十三天"></noscript><img data-src="img/2021-12-13.jpg"  alt="第二十三天" title="第二十三天">
+
+
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer"></footer>
+</div>	<a id="scrollup" href="#" style="display: none;">
+  <button id="scrollbtn" class="btn btn-icon-only rounded-circle btn-secondary scrollup-btn">
+    <span class="btn-inner--icon"><i class="fa fa-arrow-up" aria-hidden="true"></i></span>
+  </button>
+</a>
+<!-- Core -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+<!-- Optional plugins -->
+<script src="https://cdn.jsdelivr.net/npm/headroom.js@0.11.0/dist/headroom.min.js"></script>
+<!-- Theme JS -->
+<script src="https://bk.glteam.cn/usr/themes/123/assets/js/argon.min.js"></script>
+<script src="https://bk.glteam.cn/usr/themes/123/assets/js/bbrender.js"></script>
+<!-- scrollup -->
+<script>
+  $(function(){
+    var scrollBottom = parseInt($("#adminbtn").css("bottom")) + parseInt($("#adminbtn").css("height")) + 25;
+    $("#scrollbtn").css("bottom", scrollBottom);
+    var resizeTimer;
+    $(window).resize(function(e) {
+      if ($("#adminbtn").length > 0)
+      {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          scrollBottom = parseInt($("#adminbtn").css("bottom")) + parseInt($("#adminbtn").css("height")) + 25;
+          $("#scrollbtn").css("bottom", scrollBottom);
+        }, 250);
+      }
+    });
+    var scrollLock = 0;
+    if ($(window).scrollTop() > 500) $("#scrollup").fadeIn(400);
+    $(window).scroll(function() {
+      if (!scrollLock)
+      {
+        if ($(window).scrollTop() > 500) $("#scrollup").fadeIn(400);
+        else $("#scrollup").fadeOut(400);
+      }
+    });
+    $("#scrollup").click(function() {
+      scrollLock = 1;
+      $("#scrollup").fadeOut(400);
+      $("html,body").animate({scrollTop: "0px"}, 500, function() {
+        scrollLock = 0;
+      });
+    });
+  });
+</script>
+<!-- Pjax -->
+
+<script>
+  function init(){
+    $("img").Lazy({
+      threshold: 700,
+      effect: 'fadeIn',
+      effectTime: 1000,
+      defaultImage: "https://bk.glteam.cn/usr/themes/123/images/Loading.gif"
+    });
+    $("div[data-src]").Lazy({
+      threshold: 700,
+      effect: 'fadeIn',
+      placeholder: "https://bk.glteam.cn/usr/themes/123/images/Loading.gif",
+      effectTime: 1000
+    });
+
+    parseBbcode()
+    parseBblink()
+
+    ;;
+
+    try{
+      window.onload()
+    }catch(e){}
+    setTimeout(() => {
+      $('.content').viewer({
+        url: 'data-src'
+      })
+    },300)
+  }
+
+  function destroy(){
+    // viewerjs
+    var viewer = $('.content').data('viewer');
+    if(viewer){
+      viewer.destroy()
+    }
+  }
+  window.addEventListener("popstate", function(e) {
+    setTimeout(() => {
+      $('.content').viewer({
+        url: 'data-src'
+      })
+    },300)
+  }, false);
+</script>
+<script>
+  var pgid = 0
+  $(document).pjax('a[href^="https://bk.glteam.cn/"]:not(a[target="_blank"], a[no-pjax], a[href^="https://bk.glteam.cn//admin"])',
+    {
+      container: '#pjax-container',
+      fragment: '#pjax-container',
+      timeout: 8000
+    }).on('pjax:send', function() {
+    pgid = start_progress()
+    $(".black-cover").fadeIn(400)
+    $('html,body').animate({ scrollTop: $('html').offset().top}, 500)
+
+    destroy()
+
+  }).on('pjax:complete', function() {
+    $(".black-cover").fadeOut(400)
+    stop_progress(pgid)
+    init()
+
+  })
+  $("#search").submit(function() {
+    var att = $(this).serializeArray()
+    for(var i in att){
+      if(att[i].name=="s"){
+        $.pjax({url: "https://bk.glteam.cn/index.php/search/"+att[i].value+"/", container: '#pjax-container',fragment: '#pjax-container',timeout:8000})
+      }
+    }
+    return false
+  })
+</script>
+<div class="black-cover" style="display: none;"></div>
+<!-- KaTeX JS -->
+<!-- Prism JS -->
+<!-- Alert -->
+<div id="modal-notification" class="modal fade show" style="z-index: 102;display: none;">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="msgMain" class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#modal-notification').hide('normal');">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div id="msgDetail" class="modal-body"></div>
+    </div>
+  </div>
+</div>
+<script src="js/msgmain.js"></script>
+</body>
+
+</html>
